@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f8edf0">
   <meta name="description" content="Una sorpresa de cumpleaños hecha con mucho cariño.">
-  <title>Una sorpresa para ti</title>
+  <title>19 de Noviembre — Para Valery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -19,7 +19,7 @@
   <header class="topbar">
     <a class="brand" href="#" aria-label="Volver al inicio" id="brandHome">
       <span class="brand-mark">♡</span>
-      <span>PARA TI</span>
+      <span>PARA VALERY</span>
     </a>
     <div class="top-actions">
       <button class="music-button" id="musicButton" type="button" aria-label="Activar música">
@@ -31,115 +31,94 @@
   <main class="page-shell">
     <div class="progress-wrap" aria-label="Progreso de la sorpresa">
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-      <span id="progressText">01 / 04</span>
+      <span id="progressText">01 / 06</span>
     </div>
 
-    <!-- ETAPA 1 -->
-    <section class="screen active" id="screen-0" aria-labelledby="welcomeTitle">
+    <!-- PANTALLA 1: 19 DE NOVIEMBRE -->
+    <section class="screen active" id="screen-0" aria-labelledby="screen0Title">
+      <div class="centered-intro">
+        <p class="eyebrow"><span class="eyebrow-line"></span> UNA FECHA CUALQUIERA</p>
+        <h1 id="screen0Title">19 de noviembre,<br><em>el día que a nadie le importa.</em></h1>
+        <p class="intro-text">[REEMPLAZAR: Texto opcional de introducción o subtítulo corto]</p>
+        <button class="primary-button" id="startButton" type="button">Siguiente <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- PANTALLA 2: A MENOS QUE SEPAN QUIÉN ES VALERY + FOTO -->
+    <section class="screen" id="screen-1" aria-labelledby="screen1Title">
       <div class="welcome-layout">
         <div class="welcome-copy">
-          <p class="eyebrow"><span class="eyebrow-line"></span> UN DÍA MUY ESPECIAL</p>
-          <h1 id="welcomeTitle">Hoy el mundo<br><em>celebra tu existencia.</em></h1>
-          <p class="intro-text">Preparé algo para ti. Son pequeños recuerdos, palabras que quiero regalarte y una sorpresa que espero te saque una sonrisa.</p>
+          <p class="eyebrow"><span class="eyebrow-line"></span> EXCEPTO POR UNA RAZÓN</p>
+          <h2 id="screen1Title">A menos que sepan<br><em>quién es Valery.</em></h2>
+          <p class="intro-text">[REEMPLAZAR: Aquí puedes escribir unas líneas sobre por qué este día sí importa cuando se trata de ella.]</p>
           <p class="signature">Con todo mi cariño <span>♡</span></p>
-          <button class="primary-button" id="startButton" type="button">Comenzar la sorpresa <span>→</span></button>
         </div>
-        <div class="welcome-art" aria-hidden="true">
-          <div class="art-ring"></div>
-          <div class="art-card">
-            <div class="art-card-inner">
-              <span class="art-small">A LITTLE NOTE FOR YOU</span>
-              <span class="art-heart">♡</span>
-              <span class="art-script">You are<br>my favorite</span>
-              <span class="art-date">HOY Y SIEMPRE</span>
+        <div class="single-photo-wrap">
+          <article class="memory-card spotlight-card">
+            <div class="photo-frame spotlight-frame">
+              <!-- REEMPLAZA la ruta de la imagen 1 -->
+              <img src="images/foto1.jpg" alt="Valery">
+              <span class="photo-number">01</span>
             </div>
-          </div>
-          <span class="floating-heart heart-a">♡</span>
-          <span class="floating-heart heart-b">✧</span>
-          <span class="floating-heart heart-c">♡</span>
+            <p class="memory-caption">[REEMPLAZAR: Pie de foto 1]</p>
+          </article>
         </div>
       </div>
-
-      <details class="customize-panel">
-        <summary>Personalizar la sorpresa <span>＋</span></summary>
-        <div class="customize-content">
-          <p class="customize-note">Puedes cambiar los textos, cargar tus tres fotos y seleccionar una canción. Los cambios se aplican en esta visita.</p>
-          <label class="field-label" for="recipientName">Nombre de tu persona especial</label>
-          <input class="text-input" id="recipientName" type="text" placeholder="Por ejemplo: Mi amor">
-          <label class="field-label" for="messageOne">Texto de bienvenida</label>
-          <textarea class="text-input" id="messageOne" rows="2" placeholder="Tengo algo especial preparado para ti..."></textarea>
-          <label class="field-label" for="letterMessage">Carta / mensaje especial</label>
-          <textarea class="text-input" id="letterMessage" rows="4" placeholder="Escribe aquí lo que quieres decirle..."></textarea>
-          <div class="upload-grid">
-            <div class="upload-field">
-              <label class="field-label" for="photo1">Fotografía 1</label>
-              <input id="photo1" type="file" accept="image/*">
-              <label class="field-label" for="caption1">Texto de la foto 1</label>
-              <input class="text-input" id="caption1" type="text" placeholder="Un recuerdo que guardo...">
-            </div>
-            <div class="upload-field">
-              <label class="field-label" for="photo2">Fotografía 2</label>
-              <input id="photo2" type="file" accept="image/*">
-              <label class="field-label" for="caption2">Texto de la foto 2</label>
-              <input class="text-input" id="caption2" type="text" placeholder="Ese día tan bonito...">
-            </div>
-            <div class="upload-field">
-              <label class="field-label" for="photo3">Fotografía 3</label>
-              <input id="photo3" type="file" accept="image/*">
-              <label class="field-label" for="caption3">Texto de la foto 3</label>
-              <input class="text-input" id="caption3" type="text" placeholder="Y todos los que vienen...">
-            </div>
-          </div>
-          <label class="field-label" for="musicFile">Tu canción (opcional, MP3 u otro audio compatible)</label>
-          <input id="musicFile" type="file" accept="audio/*">
-          <p class="upload-help">Consejo: también puedes dejar las fotos y la canción dentro de las carpetas <strong>images</strong> y <strong>music</strong> del proyecto para que estén disponibles para todos al publicar la web.</p>
-        </div>
-      </details>
     </section>
 
-    <!-- ETAPA 2 -->
-    <section class="screen" id="screen-1" aria-labelledby="memoriesTitle">
+    <!-- PANTALLA 3: UNA FOTO DESTACADA -->
+    <section class="screen" id="screen-2" aria-labelledby="screen2Title">
       <div class="section-heading">
-        <p class="eyebrow"><span class="eyebrow-line"></span> CAPÍTULO UNO</p>
-        <h2 id="memoriesTitle">Pequeños momentos,<br><em>grandes recuerdos.</em></h2>
-        <p class="section-subtitle">Hay instantes que se quedan con nosotros mucho después de que terminan.</p>
+        <p class="eyebrow"><span class="eyebrow-line"></span> UN RECUERDO</p>
+        <h2 id="screen2Title">[REEMPLAZAR: Título breve para esta foto]</h2>
       </div>
-      <div class="memory-grid">
-        <article class="memory-card">
-          <div class="photo-frame"><img id="preview1" alt="Primer recuerdo" src="images/foto1.jpg"><span class="photo-number">01</span></div>
-          <p class="memory-caption" id="captionPreview1">Un recuerdo que siempre me hace sonreír.</p>
-        </article>
-        <article class="memory-card memory-card-raised">
-          <div class="photo-frame"><img id="preview2" alt="Segundo recuerdo" src="images/foto2.jpg"><span class="photo-number">02</span></div>
-          <p class="memory-caption" id="captionPreview2">De esos momentos que quisiera repetir.</p>
-        </article>
-        <article class="memory-card">
-          <div class="photo-frame"><img id="preview3" alt="Tercer recuerdo" src="images/foto3.jpg"><span class="photo-number">03</span></div>
-          <p class="memory-caption" id="captionPreview3">Y todavía quedan muchos por vivir.</p>
+      <div class="solo-photo-container">
+        <article class="memory-card solo-card">
+          <div class="photo-frame solo-frame">
+            <!-- REEMPLAZA la ruta de la imagen 2 -->
+            <img src="images/foto2.jpg" alt="Recuerdo especial">
+            <span class="photo-number">02</span>
+          </div>
+          <p class="memory-caption">[REEMPLAZAR: Texto o dedicatoria debajo de esta segunda foto]</p>
         </article>
       </div>
-      <p class="soft-note">Cada fotografía cuenta una historia. Estas son algunas de mis favoritas. <span>♡</span></p>
     </section>
 
-    <!-- ETAPA 3 -->
-    <section class="screen" id="screen-2" aria-labelledby="letterTitle">
+    <!-- PANTALLA 4: CARTA (PARTE 1) -->
+    <section class="screen" id="screen-3" aria-labelledby="letterTitle1">
       <div class="letter-layout">
         <div class="letter-decoration" aria-hidden="true">
           <span class="letter-flower">✿</span>
-          <span class="letter-vertical">WITH LOVE · ALWAYS</span>
+          <span class="letter-vertical">19 · NOVIEMBRE</span>
         </div>
         <article class="letter-card">
-          <p class="eyebrow">UNAS PALABRAS PARA TI</p>
-          <h2 id="letterTitle">Si pudiera regalarte<br><em>algo hoy...</em></h2>
+          <p class="eyebrow">UNAS PALABRAS PARA TI · I</p>
+          <h2 id="letterTitle1">[REEMPLAZAR: Título Carta Parte 1,<br><em>por ejemplo: Si pudiera decirte algo hoy...</em>]</h2>
           <div class="letter-rule"><span>♡</span></div>
-          <p class="letter-body" id="letterPreview">Te regalaría la posibilidad de verte con los mismos ojos con los que te veo: con admiración, cariño y una enorme alegría de tenerte en mi vida. Gracias por cada sonrisa, cada conversación y cada momento compartido. Deseo que este nuevo año te traiga motivos infinitos para ser feliz. Y ojalá me permitas acompañarte en muchos de ellos.</p>
-          <p class="letter-signoff">Con amor, <span>♡</span></p>
+          <p class="letter-body">[REEMPLAZAR: Aquí va el primer texto largo de tu carta. Puedes usar saltos de línea libremente porque el CSS respeta los párrafos.]</p>
         </article>
       </div>
     </section>
 
-    <!-- ETAPA 4 -->
-    <section class="screen finale-screen" id="screen-3" aria-labelledby="finalTitle">
+    <!-- PANTALLA 5: CARTA (PARTE 2) -->
+    <section class="screen" id="screen-4" aria-labelledby="letterTitle2">
+      <div class="letter-layout">
+        <div class="letter-decoration" aria-hidden="true">
+          <span class="letter-flower">✿</span>
+          <span class="letter-vertical">PARA VALERY</span>
+        </div>
+        <article class="letter-card">
+          <p class="eyebrow">UNAS PALABRAS PARA TI · II</p>
+          <h2 id="letterTitle2">[REEMPLAZAR: Título Carta Parte 2,<br><em>por ejemplo: Y para este nuevo año...</em>]</h2>
+          <div class="letter-rule"><span>♡</span></div>
+          <p class="letter-body">[REEMPLAZAR: Aquí va la segunda parte de tu carta.]</p>
+          <p class="letter-signoff">[REEMPLAZAR: Firma, ej. Con cariño,] <span>♡</span></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PANTALLA 6: FINAL CON PASTEL -->
+    <section class="screen finale-screen" id="screen-5" aria-labelledby="finalTitle">
       <div class="celebration" id="celebration" aria-hidden="true"></div>
       <div class="final-content">
         <p class="eyebrow final-eyebrow">HOY ES TU DÍA</p>
@@ -154,20 +133,21 @@
           <div class="cake-bottom"></div>
           <div class="cake-plate"></div>
         </div>
-        <h2 id="finalTitle">¡Feliz cumpleaños,<br><em id="finalName">mi amor</em>!</h2>
-        <p class="final-message" id="finalMessage">Que la vida te sorprenda con cosas tan bonitas como las que tú haces sentir. Que nunca te falten razones para sonreír, sueños por cumplir y personas que te quieran de verdad.</p>
-        <p class="final-wish">Hoy, mañana y siempre: que seas muy feliz. <span>♡</span></p>
-        <button class="secondary-button" id="replayButton" type="button">Volver a vivir la sorpresa ↺</button>
+        <h2 id="finalTitle">¡Feliz cumpleaños,<br><em>Valery</em>!</h2>
+        <p class="final-message">[REEMPLAZAR: Mensaje final de cumpleaños junto al pastel.]</p>
+        <p class="final-wish">[REEMPLAZAR: Deseo final corto, ej. Hoy, mañana y siempre: que seas muy feliz.] <span>♡</span></p>
+        <button class="secondary-button" id="replayButton" type="button">Volver a ver la sorpresa ↺</button>
       </div>
     </section>
 
     <nav class="page-navigation" aria-label="Navegación de la sorpresa">
       <button class="back-button" id="backButton" type="button" disabled>← Anterior</button>
-      <button class="next-button" id="nextButton" type="button">Continuar <span>→</span></button>
+      <button class="next-button" id="nextButton" type="button">Siguiente <span>→</span></button>
     </nav>
-    <footer class="page-footer">HECHO CON <span>♡</span> PARA ALGUIEN ESPECIAL</footer>
+    <footer class="page-footer">19 DE NOVIEMBRE <span>♡</span> PARA VALERY</footer>
   </main>
 
-  <audio id="backgroundMusic" loop></audio>
+  <!-- REEMPLAZA el src con la ruta de tu canción en tu carpeta music -->
+  <audio id="backgroundMusic" src="music/cancion.mp3" loop></audio>
 </body>
 </html>
