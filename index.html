@@ -1,153 +1,240 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f8edf0">
-  <meta name="description" content="Una sorpresa de cumpleaños hecha con mucho cariño.">
-  <title>19 de Noviembre — Para Valery</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8edf0">
+
+    <title>19 de noviembre | Valery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
+
 <body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
 
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="Volver al inicio" id="brandHome">
-      <span class="brand-mark">♡</span>
-      <span>PARA VALERY</span>
-    </a>
-    <div class="top-actions">
-      <button class="music-button" id="musicButton" type="button" aria-label="Activar música">
-        <span class="music-icon">♫</span><span id="musicLabel">Activar música</span>
-      </button>
-    </div>
-  </header>
+    <header class="topbar">
+        <a class="brand" href="#" id="brandHome">
+            ♡ PARA VALERY
+        </a>
 
-  <main class="page-shell">
-    <div class="progress-wrap" aria-label="Progreso de la sorpresa">
-      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-      <span id="progressText">01 / 06</span>
-    </div>
+        <button class="music-button" id="musicButton" type="button">
+            ♫ <span id="musicLabel">Activar música</span>
+        </button>
+    </header>
 
-    <!-- PANTALLA 1: 19 DE NOVIEMBRE -->
-    <section class="screen active" id="screen-0" aria-labelledby="screen0Title">
-      <div class="centered-intro">
-        <p class="eyebrow"><span class="eyebrow-line"></span> UNA FECHA CUALQUIERA</p>
-        <h1 id="screen0Title">19 de noviembre,<br><em>el día que a nadie le importa.</em></h1>
-        <p class="intro-text">[REEMPLAZAR: Texto opcional de introducción o subtítulo corto]</p>
-        <button class="primary-button" id="startButton" type="button">Siguiente <span>→</span></button>
-      </div>
-    </section>
+    <main class="page-shell">
 
-    <!-- PANTALLA 2: A MENOS QUE SEPAN QUIÉN ES VALERY + FOTO -->
-    <section class="screen" id="screen-1" aria-labelledby="screen1Title">
-      <div class="welcome-layout">
-        <div class="welcome-copy">
-          <p class="eyebrow"><span class="eyebrow-line"></span> EXCEPTO POR UNA RAZÓN</p>
-          <h2 id="screen1Title">A menos que sepan<br><em>quién es Valery.</em></h2>
-          <p class="intro-text">[REEMPLAZAR: Aquí puedes escribir unas líneas sobre por qué este día sí importa cuando se trata de ella.]</p>
-          <p class="signature">Con todo mi cariño <span>♡</span></p>
-        </div>
-        <div class="single-photo-wrap">
-          <article class="memory-card spotlight-card">
-            <div class="photo-frame spotlight-frame">
-              <!-- REEMPLAZA la ruta de la imagen 1 -->
-              <img src="images/foto1.jpg" alt="Valery">
-              <span class="photo-number">01</span>
+        <div class="progress-wrap">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p class="memory-caption">[REEMPLAZAR: Pie de foto 1]</p>
-          </article>
+            <span id="progressText">01 / 06</span>
         </div>
-      </div>
-    </section>
 
-    <!-- PANTALLA 3: UNA FOTO DESTACADA -->
-    <section class="screen" id="screen-2" aria-labelledby="screen2Title">
-      <div class="section-heading">
-        <p class="eyebrow"><span class="eyebrow-line"></span> UN RECUERDO</p>
-        <h2 id="screen2Title">[REEMPLAZAR: Título breve para esta foto]</h2>
-      </div>
-      <div class="solo-photo-container">
-        <article class="memory-card solo-card">
-          <div class="photo-frame solo-frame">
-            <!-- REEMPLAZA la ruta de la imagen 2 -->
-            <img src="images/foto2.jpg" alt="Recuerdo especial">
-            <span class="photo-number">02</span>
-          </div>
-          <p class="memory-caption">[REEMPLAZAR: Texto o dedicatoria debajo de esta segunda foto]</p>
-        </article>
-      </div>
-    </section>
+        <!-- PANTALLA 1: INICIO -->
 
-    <!-- PANTALLA 4: CARTA (PARTE 1) -->
-    <section class="screen" id="screen-3" aria-labelledby="letterTitle1">
-      <div class="letter-layout">
-        <div class="letter-decoration" aria-hidden="true">
-          <span class="letter-flower">✿</span>
-          <span class="letter-vertical">19 · NOVIEMBRE</span>
-        </div>
-        <article class="letter-card">
-          <p class="eyebrow">UNAS PALABRAS PARA TI · I</p>
-          <h2 id="letterTitle1">[REEMPLAZAR: Título Carta Parte 1,<br><em>por ejemplo: Si pudiera decirte algo hoy...</em>]</h2>
-          <div class="letter-rule"><span>♡</span></div>
-          <p class="letter-body">[REEMPLAZAR: Aquí va el primer texto largo de tu carta. Puedes usar saltos de línea libremente porque el CSS respeta los párrafos.]</p>
-        </article>
-      </div>
-    </section>
+        <section class="screen date-screen active" id="screen-0">
 
-    <!-- PANTALLA 5: CARTA (PARTE 2) -->
-    <section class="screen" id="screen-4" aria-labelledby="letterTitle2">
-      <div class="letter-layout">
-        <div class="letter-decoration" aria-hidden="true">
-          <span class="letter-flower">✿</span>
-          <span class="letter-vertical">PARA VALERY</span>
-        </div>
-        <article class="letter-card">
-          <p class="eyebrow">UNAS PALABRAS PARA TI · II</p>
-          <h2 id="letterTitle2">[REEMPLAZAR: Título Carta Parte 2,<br><em>por ejemplo: Y para este nuevo año...</em>]</h2>
-          <div class="letter-rule"><span>♡</span></div>
-          <p class="letter-body">[REEMPLAZAR: Aquí va la segunda parte de tu carta.]</p>
-          <p class="letter-signoff">[REEMPLAZAR: Firma, ej. Con cariño,] <span>♡</span></p>
-        </article>
-      </div>
-    </section>
+            <p class="date-kicker">19 DE NOVIEMBRE</p>
 
-    <!-- PANTALLA 6: FINAL CON PASTEL -->
-    <section class="screen finale-screen" id="screen-5" aria-labelledby="finalTitle">
-      <div class="celebration" id="celebration" aria-hidden="true"></div>
-      <div class="final-content">
-        <p class="eyebrow final-eyebrow">HOY ES TU DÍA</p>
-        <div class="cake" aria-label="Pastel de cumpleaños animado">
-          <div class="candles">
-            <span class="candle"><i></i></span>
-            <span class="candle"><i></i></span>
-            <span class="candle"><i></i></span>
-          </div>
-          <div class="cake-top"></div>
-          <div class="cake-middle"><span class="icing-drip"></span></div>
-          <div class="cake-bottom"></div>
-          <div class="cake-plate"></div>
-        </div>
-        <h2 id="finalTitle">¡Feliz cumpleaños,<br><em>Valery</em>!</h2>
-        <p class="final-message">[REEMPLAZAR: Mensaje final de cumpleaños junto al pastel.]</p>
-        <p class="final-wish">[REEMPLAZAR: Deseo final corto, ej. Hoy, mañana y siempre: que seas muy feliz.] <span>♡</span></p>
-        <button class="secondary-button" id="replayButton" type="button">Volver a ver la sorpresa ↺</button>
-      </div>
-    </section>
+            <h1>
+                El día que a nadie
+                <br>
+                <em>le importa.</em>
+            </h1>
 
-    <nav class="page-navigation" aria-label="Navegación de la sorpresa">
-      <button class="back-button" id="backButton" type="button" disabled>← Anterior</button>
-      <button class="next-button" id="nextButton" type="button">Siguiente <span>→</span></button>
-    </nav>
-    <footer class="page-footer">19 DE NOVIEMBRE <span>♡</span> PARA VALERY</footer>
-  </main>
+            <p class="intro-text">O eso parece...</p>
 
-  <!-- REEMPLAZA el src con la ruta de tu canción en tu carpeta music -->
-  <audio id="backgroundMusic" src="music/cancion.mp3" loop></audio>
+        </section>
+
+
+        <!-- PANTALLA 2: VALERY -->
+
+        <section class="screen valery-screen" id="screen-1">
+
+            <p class="eyebrow">PERO HAY UNA EXCEPCIÓN</p>
+
+            <h2>
+                A menos que sepan
+                <br>
+                <em>quién es Valery.</em>
+            </h2>
+
+            <div class="valery-photo">
+                <img src="./images/foto1.jpg" alt="Valery">
+            </div>
+
+            <p class="memory-caption">
+                [Escribe aquí una frase para esta fotografía]
+            </p>
+
+        </section>
+
+
+        <!-- PANTALLA 3: FOTOGRAFÍA -->
+
+        <section class="screen photo-screen" id="screen-2">
+
+            <p class="eyebrow">UN MOMENTO PARA RECORDAR</p>
+
+            <div class="single-photo">
+                <img src="./images/foto2.jpg" alt="Un recuerdo especial">
+            </div>
+
+            <p class="memory-caption">
+                [Escribe aquí el texto que acompañará esta foto]
+            </p>
+
+        </section>
+
+
+        <!-- PANTALLA 4: MENSAJE -->
+
+        <section class="screen letter-screen" id="screen-3">
+
+            <article class="letter-card">
+
+                <p class="eyebrow">UNAS PALABRAS PARA TI</p>
+
+                <h2>[Título de esta página]</h2>
+
+                <div class="letter-rule">
+                    ♡
+                </div>
+
+                <p class="letter-body">
+                    [Escribe aquí tu primer mensaje para Valery.
+                    Puedes extenderte todo lo que quieras.]
+                </p>
+
+                <p class="letter-signoff">
+                    Con cariño, ♡
+                </p>
+
+            </article>
+
+            <div class="letter-photo">
+                <img src="./images/foto3.jpg" alt="Otro recuerdo">
+            </div>
+
+        </section>
+
+
+        <!-- PANTALLA 5: SEGUNDO MENSAJE -->
+
+        <section class="screen letter-screen" id="screen-4">
+
+            <article class="letter-card">
+
+                <p class="eyebrow">Y UNA COSA MÁS...</p>
+
+                <h2>[Título de la página repetida]</h2>
+
+                <div class="letter-rule">
+                    ♡
+                </div>
+
+                <p class="letter-body">
+                    [Escribe aquí el segundo mensaje.
+                    Esta pantalla conserva el mismo estilo
+                    de la página anterior.]
+                </p>
+
+                <p class="letter-signoff">
+                    ♡
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- PANTALLA 6: FINAL CON PASTEL -->
+
+        <section class="screen finale-screen" id="screen-5">
+
+            <div class="celebration" id="celebration"></div>
+
+            <div class="final-content">
+
+                <p class="eyebrow">
+                    HOY ES TU DÍA
+                </p>
+
+                <div class="cake">
+
+                    <div class="candles">
+                        <span class="candle"><i></i></span>
+                        <span class="candle"><i></i></span>
+                        <span class="candle"><i></i></span>
+                    </div>
+
+                    <div class="cake-top"></div>
+                    <div class="cake-middle"></div>
+                    <div class="cake-bottom"></div>
+                    <div class="cake-plate"></div>
+
+                </div>
+
+                <h2>
+                    ¡Feliz cumpleaños,
+                    <br>
+                    <em>Valery</em>!
+                </h2>
+
+                <p class="final-message">
+                    [Escribe aquí tu felicitación final para Valery.]
+                </p>
+
+                <p class="final-wish">
+                    Que tengas un día precioso. ♡
+                </p>
+
+                <button class="secondary-button" id="replayButton">
+                    Volver a vivir la sorpresa ↺
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- NAVEGACIÓN -->
+
+        <nav class="page-navigation">
+
+            <button class="back-button" id="backButton" disabled>
+                ← Anterior
+            </button>
+
+            <button class="next-button" id="nextButton">
+                Siguiente →
+            </button>
+
+        </nav>
+
+        <footer class="page-footer">
+            HECHO CON ♡ PARA VALERY
+        </footer>
+
+    </main>
+
+
+    <!-- MÚSICA -->
+
+    <audio
+        id="backgroundMusic"
+        src="./music/cancion.mp3"
+        loop
+        preload="none">
+    </audio>
+
 </body>
 </html>
