@@ -16,37 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentScreen = 0;
   let musicEnabled = false;
-  let selectedAudioUrl = null;
   let celebrationStarted = false;
-  const photoUrls = [null, null, null];
-
-  const defaultCaptions = [
-    "Un recuerdo que siempre me hace sonreír.",
-    "De esos momentos que quisiera repetir.",
-    "Y todavía quedan muchos por vivir."
-  ];
-
-  function valueOr(id, fallback) {
-    const value = document.getElementById(id).value.trim();
-    return value || fallback;
-  }
-
-  function applyPersonalization() {
-    const name = valueOr("recipientName", "mi amor");
-    document.getElementById("finalName").textContent = name;
-    document.getElementById("welcomeTitle").innerHTML =
-      `Hoy el mundo<br><em>celebra tu existencia.</em>`;
-    const welcome = document.getElementById("messageOne").value.trim();
-    if (welcome) document.querySelector(".intro-text").textContent = welcome;
-
-    const letter = document.getElementById("letterMessage").value.trim();
-    if (letter) document.getElementById("letterPreview").textContent = letter;
-
-    for (let i = 1; i <= 3; i++) {
-      const caption = valueOr(`caption${i}`, defaultCaptions[i - 1]);
-      document.getElementById(`captionPreview${i}`).textContent = caption;
-    }
-  }
 
   function showScreen(index) {
     currentScreen = Math.max(0, Math.min(index, screens.length - 1));
@@ -57,11 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     progressFill.style.width = `${((currentScreen + 1) / screens.length) * 100}%`;
     progressText.textContent = `0${currentScreen + 1} / 0${screens.length}`;
+
+    // En la pantalla 1 ya existe el botón principal "Siguiente", ocultamos la barra inferior en esa vista
     backButton.disabled = currentScreen === 0;
-    nextButton.hidden = currentScreen === screens.length - 1;
+    backButton.style.visibility = currentScreen === 0 ? "hidden" : "visible";
+    nextButton.hidden = currentScreen === 0 || currentScreen === screens.length - 1;
+
     nextButton.innerHTML = currentScreen === screens.length - 2
       ? 'Ver la sorpresa <span>♡</span>'
-      : 'Continuar <span>→</span>';
+      : 'Siguiente <span>→</span>';
 
     if (currentScreen === screens.length - 1 && !celebrationStarted) {
       startCelebration();
@@ -71,11 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function startMusic() {
-    if (!audio.src) {
-      musicLabel.textContent = "Carga una canción";
-      document.querySelector(".customize-panel").open = true;
-      return;
-    }
     try {
       await audio.play();
       musicEnabled = true;
@@ -83,7 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
       musicLabel.textContent = "Pausar música";
       musicButton.setAttribute("aria-label", "Pausar música");
     } catch (error) {
-      musicLabel.textContent = "Pulsa para escuchar";
+      // Si no hay archivo de música cargado aún en music/cancion.mp3
+      musicLabel.textContent = "Activar música";
     }
   }
 
@@ -130,17 +100,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   startButton.addEventListener("click", () => {
-    applyPersonalization();
     showScreen(1);
-    if (audio.src && !musicEnabled) startMusic();
+    if (!musicEnabled) startMusic();
   });
 
   nextButton.addEventListener("click", () => {
-    applyPersonalization();
     showScreen(currentScreen + 1);
   });
 
-  backButton.addEventListener("click", () => showScreen(currentScreen - 1));
+  backButton.addEventListener("click", () => {
+    showScreen(currentScreen - 1);
+  });
 
   replayButton.addEventListener("click", () => {
     resetCelebration();
@@ -155,55 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
   musicButton.addEventListener("click", () => {
     if (musicEnabled) pauseMusic();
     else startMusic();
-  });
-
-  // Permite cargar las tres fotografías desde el dispositivo.
-  for (let i = 1; i <= 3; i++) {
-    const input = document.getElementById(`photo${i}`);
-    input.addEventListener("change", () => {
-      const file = input.files && input.files[0];
-      if (!file) return;
-      if (!file.type.startsWith("image/")) {
-        alert("Selecciona un archivo de imagen.");
-        input.value = "";
-        return;
-      }
-      if (photoUrls[i - 1]) URL.revokeObjectURL(photoUrls[i - 1]);
-      photoUrls[i - 1] = URL.createObjectURL(file);
-      document.getElementById(`preview${i}`).src = photoUrls[i - 1];
-    });
-  }
-
-  // Permite elegir un archivo de audio. El navegador puede exigir
-  // que la reproducción comience después de una acción del usuario.
-  document.getElementById("musicFile").addEventListener("change", () => {
-    const file = document.getElementById("musicFile").files[0];
-    if (!file) return;
-    if (!file.type.startsWith("audio/")) {
-      alert("Selecciona un archivo de audio compatible.");
-      return;
-    }
-    if (selectedAudioUrl) URL.revokeObjectURL(selectedAudioUrl);
-    selectedAudioUrl = URL.createObjectURL(file);
-    audio.src = selectedAudioUrl;
-    audio.load();
-    pauseMusic();
-    musicLabel.textContent = "Música lista";
-  });
-
-  // Actualiza los textos de las tarjetas en cuanto se editan.
-  for (let i = 1; i <= 3; i++) {
-    document.getElementById(`caption${i}`).addEventListener("input", () => {
-      document.getElementById(`captionPreview${i}`).textContent =
-        valueOr(`caption${i}`, defaultCaptions[i - 1]);
-    });
-  }
-  document.getElementById("letterMessage").addEventListener("input", () => {
-    document.getElementById("letterPreview").textContent =
-      valueOr("letterMessage", "Te deseo un cumpleaños lleno de momentos bonitos.");
-  });
-  document.getElementById("recipientName").addEventListener("input", () => {
-    document.getElementById("finalName").textContent = valueOr("recipientName", "mi amor");
   });
 
   showScreen(0);
