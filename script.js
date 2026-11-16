@@ -2,7 +2,7 @@
    SORPRESA DE CUMPLEAÑOS — lógica e interacciones
    ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const screens = [...document.querySelectorAll(".screen")];
+  const screens = Array.from(document.querySelectorAll(".screen"));
   const progressFill = document.getElementById("progressFill");
   const progressText = document.getElementById("progressText");
   const backButton = document.getElementById("backButton");
@@ -20,52 +20,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showScreen(index) {
     currentScreen = Math.max(0, Math.min(index, screens.length - 1));
+
     screens.forEach((screen, i) => {
-      screen.classList.toggle("active", i === currentScreen);
-      screen.setAttribute("aria-hidden", i === currentScreen ? "false" : "true");
+      if (i === currentScreen) {
+        screen.classList.add("active");
+        screen.style.display = "block";
+        screen.setAttribute("aria-hidden", "false");
+      } else {
+        screen.classList.remove("active");
+        screen.style.display = "none";
+        screen.setAttribute("aria-hidden", "true");
+      }
     });
 
-    progressFill.style.width = `${((currentScreen + 1) / screens.length) * 100}%`;
-    progressText.textContent = `0${currentScreen + 1} / 0${screens.length}`;
+    if (progressFill) {
+      progressFill.style.width = `${((currentScreen + 1) / screens.length) * 100}%`;
+    }
+    if (progressText) {
+      progressText.textContent = `0${currentScreen + 1} / 0${screens.length}`;
+    }
 
-    // En la pantalla 1 ya existe el botón principal "Siguiente", ocultamos la barra inferior en esa vista
-    backButton.disabled = currentScreen === 0;
-    backButton.style.visibility = currentScreen === 0 ? "hidden" : "visible";
-    nextButton.hidden = currentScreen === 0 || currentScreen === screens.length - 1;
+    if (backButton) {
+      backButton.disabled = currentScreen === 0;
+      backButton.style.visibility = currentScreen === 0 ? "hidden" : "visible";
+    }
 
-    nextButton.innerHTML = currentScreen === screens.length - 2
-      ? 'Ver la sorpresa <span>♡</span>'
-      : 'Siguiente <span>→</span>';
+    if (nextButton) {
+      // Ocultar solo en la última pantalla (pastel)
+      if (currentScreen === screens.length - 1) {
+        nextButton.style.display = "none";
+      } else {
+        nextButton.style.display = "inline-flex";
+        nextButton.innerHTML = currentScreen === screens.length - 2
+          ? 'Ver la sorpresa <span>♡</span>'
+          : 'Siguiente <span>→</span>';
+      }
+    }
 
     if (currentScreen === screens.length - 1 && !celebrationStarted) {
       startCelebration();
       celebrationStarted = true;
     }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   async function startMusic() {
+    if (!audio) return;
     try {
       await audio.play();
       musicEnabled = true;
       musicButton.classList.add("playing");
       musicLabel.textContent = "Pausar música";
-      musicButton.setAttribute("aria-label", "Pausar música");
     } catch (error) {
-      // Si no hay archivo de música cargado aún en music/cancion.mp3
       musicLabel.textContent = "Activar música";
     }
   }
 
   function pauseMusic() {
+    if (!audio) return;
     audio.pause();
     musicEnabled = false;
     musicButton.classList.remove("playing");
     musicLabel.textContent = "Activar música";
-    musicButton.setAttribute("aria-label", "Activar música");
   }
 
   function startCelebration() {
+    if (!celebration) return;
     celebration.innerHTML = "";
     const balloonColors = ["#d88da4", "#e9c18c", "#b58b9c", "#e8b6bd", "#c6a1aa", "#f0d8c8"];
     for (let i = 0; i < 13; i++) {
@@ -86,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       piece.className = "confetti";
       piece.style.left = `${Math.random() * 100}%`;
       piece.style.background = confettiColors[i % confettiColors.length];
-      piece.style.borderRadius = Math.random() > .5 ? "50%" : "2px";
+      piece.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
       piece.style.setProperty("--duration", `${3 + Math.random() * 4}s`);
       piece.style.setProperty("--drift", `${Math.random() * 180 - 90}px`);
       piece.style.animationDelay = `${Math.random() * 2.5}s`;
@@ -95,37 +116,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function resetCelebration() {
-    celebration.innerHTML = "";
+    if (celebration) celebration.innerHTML = "";
     celebrationStarted = false;
   }
 
-  startButton.addEventListener("click", () => {
-    showScreen(1);
-    if (!musicEnabled) startMusic();
-  });
+  if (startButton) {
+    startButton.addEventListener("click", () => {
+      showScreen(1);
+      if (!musicEnabled) startMusic();
+    });
+  }
 
-  nextButton.addEventListener("click", () => {
-    showScreen(currentScreen + 1);
-  });
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      showScreen(currentScreen + 1);
+      if (currentScreen === 1 && !musicEnabled) startMusic();
+    });
+  }
 
-  backButton.addEventListener("click", () => {
-    showScreen(currentScreen - 1);
-  });
+  if (backButton) {
+    backButton.addEventListener("click", () => {
+      showScreen(currentScreen - 1);
+    });
+  }
 
-  replayButton.addEventListener("click", () => {
-    resetCelebration();
-    showScreen(0);
-  });
+  if (replayButton) {
+    replayButton.addEventListener("click", () => {
+      resetCelebration();
+      showScreen(0);
+    });
+  }
 
-  document.getElementById("brandHome").addEventListener("click", (event) => {
-    event.preventDefault();
-    showScreen(0);
-  });
+  const brandHome = document.getElementById("brandHome");
+  if (brandHome) {
+    brandHome.addEventListener("click", (event) => {
+      event.preventDefault();
+      showScreen(0);
+    });
+  }
 
-  musicButton.addEventListener("click", () => {
-    if (musicEnabled) pauseMusic();
-    else startMusic();
-  });
+  if (musicButton) {
+    musicButton.addEventListener("click", () => {
+      if (musicEnabled) pauseMusic();
+      else startMusic();
+    });
+  }
 
   showScreen(0);
 });
