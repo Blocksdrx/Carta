@@ -46,7 +46,10 @@ body {
     padding: 12px 18px;
     font-family: inherit;
 }
-
+.intro-music-button {
+    margin-top: 25px;
+    cursor: pointer;
+}
 .music-button,
 .back-button {
     background: transparent;
