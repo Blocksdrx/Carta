@@ -1,6 +1,8 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ELEMENTOS PRINCIPALES
+
     const screens = [...document.querySelectorAll(".screen")];
 
     const progressFill = document.getElementById("progressFill");
@@ -11,16 +13,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const replayButton = document.getElementById("replayButton");
 
-    const musicButton = document.getElementById("musicButton");
+    const playSongButton = document.getElementById("playSongButton");
     const musicLabel = document.getElementById("musicLabel");
-
-    const audio = document.getElementById("backgroundMusic");
+    const audio = document.getElementById("musica");
 
     const celebration = document.getElementById("celebration");
 
     let currentScreen = 0;
-    let musicEnabled = true;
     let celebrationStarted = false;
+
+
+    // CONFIGURACIÓN DE MÚSICA
+
+    audio.volume = 0.5;
+    audio.loop = true;
+
+    // La canción SOLO se reproduce cuando se pulsa el botón.
+
+    playSongButton.addEventListener("click", async () => {
+
+        if (audio.paused) {
+
+            try {
+
+                await audio.play();
+
+                musicLabel.textContent = "Pausar canción";
+                playSongButton.classList.add("playing");
+
+            } catch (error) {
+
+                console.error("Error al reproducir la canción:", error);
+
+                musicLabel.textContent = "Intentar nuevamente";
+
+            }
+
+        } else {
+
+            audio.pause();
+
+            musicLabel.textContent = "Reproducir canción";
+            playSongButton.classList.remove("playing");
+
+        }
+
+    });
+
+
+    // ACTUALIZAR BOTÓN SI EL AUDIO TERMINA O SE PAUSA
+
+    audio.addEventListener("pause", () => {
+
+        musicLabel.textContent = "Reproducir canción";
+        playSongButton.classList.remove("playing");
+
+    });
+
+    audio.addEventListener("play", () => {
+
+        musicLabel.textContent = "Pausar canción";
+        playSongButton.classList.add("playing");
+
+    });
 
 
     // CAMBIAR DE PANTALLA
@@ -46,21 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const musica = document.getElementById("musica");
 
-    musica.volume = 0.5;
-
-    const reproducirMusica = () => {
-        musica.play().catch(error => {
-            console.log("Esperando interacción del usuario para reproducir música.");
-        });
-    };
-
-    reproducirMusica();
-
-    document.addEventListener("click", reproducirMusica, { once: true });
-});
         // ACTUALIZAR PROGRESO
 
         progressFill.style.width =
@@ -116,50 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // CONTROL DE MÚSICA
-
-    async function toggleMusic() {
-
-        if (musicEnabled) {
-
-            audio.pause();
-
-            musicEnabled = false;
-
-            musicButton.classList.remove("playing");
-
-            musicLabel.textContent = "Activar música";
-
-            return;
-
-        }
-
-        try {
-
-            await audio.play();
-
-            musicEnabled = true;
-
-            musicButton.classList.add("playing");
-
-            musicLabel.textContent = "Pausar música";
-
-        } catch (error) {
-
-            musicLabel.textContent =
-                "./cancion.mp3";
-
-        }
-
-    }
-
-
     // CREAR GLOBOS Y CONFETI
 
     function startCelebration() {
 
         celebration.innerHTML = "";
-
 
         const balloonColors = [
             "#d88da4",
@@ -298,11 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
             showScreen(0);
 
         });
-
-
-    // BOTÓN DE MÚSICA
-
-    musicButton.addEventListener("click", toggleMusic);
 
 
     // INICIAR PÁGINA
