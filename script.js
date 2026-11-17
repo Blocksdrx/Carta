@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const celebration = document.getElementById("celebration");
 
     let currentScreen = 0;
-    let musicEnabled = false;
+    let musicEnabled = true;
     let celebrationStarted = false;
 
 
@@ -46,7 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const musica = document.getElementById("musica");
 
+    musica.volume = 0.5;
+
+    const reproducirMusica = () => {
+        musica.play().catch(error => {
+            console.log("Esperando interacción del usuario para reproducir música.");
+        });
+    };
+
+    reproducirMusica();
+
+    document.addEventListener("click", reproducirMusica, { once: true });
+});
         // ACTUALIZAR PROGRESO
 
         progressFill.style.width =
