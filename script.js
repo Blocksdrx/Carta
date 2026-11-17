@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
 
             musicLabel.textContent =
-                "Añade music/cancion.mp3";
+                "./cancion.mp3";
 
         }
 
